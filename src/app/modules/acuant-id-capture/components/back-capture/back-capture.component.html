@@ -1,0 +1,38 @@
+<ng-fad-acuant
+  [credentials]="credentials"
+  [configuration]= "configuration"
+  [side]=1
+  [idData]="ocrRequired"
+  [idPhoto]="idPhotoRequired"
+  [imageQuality]= 1
+  [documentInstance]="document"
+  (onerror)="onerror($event)"
+  (oncomplete)="oncomplete($event)"
+  *ngIf="!isProcessComplete">
+</ng-fad-acuant>
+
+
+<ng-container *ngIf="isProcessComplete">
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-9 mt-5">
+        <a class="btn btn-primary" routerLink="/acuant-capture/side-to-capture">Elegir otro lado para capturar</a>
+        <br>
+        <p>idData from response:</p>
+        <br>
+        <pre>{{acuantResult.idData | json}}</pre>
+        <br>
+        <ng-container *ngIf="frontImage">
+            <p>ID front image</p>
+            <img [src]="frontImage" alt="ID front image" style="display: flex; width: 100%; height: auto;">
+            <br>
+            <p>Portrait</p>
+            <img [src]="acuantResult.idPhoto" alt="ID portrait image" style="display: flex; width: auto; height: auto;">
+            <br>
+        </ng-container>
+        <p>ID back image</p>
+        <img [src]="acuantResult.id.image.data" alt="ID back image" style="display: flex; width: 100%; height: auto;">
+      </div>
+    </div>
+  </div>
+</ng-container>

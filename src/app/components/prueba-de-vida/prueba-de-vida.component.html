@@ -1,0 +1,35 @@
+<ng-fad-facetec
+  [credentials]="credentials"
+  [configuration]="configuration"
+  (onerror)="onerror($event)"
+  (oncomplete)="oncomplete($event)"
+  *ngIf="!isProcessComplete">
+</ng-fad-facetec>
+
+
+<ng-container *ngIf="isProcessComplete">
+    <div class="container-fluid">
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-9 mt-5">
+            <a class="btn btn-primary" routerLink="/home">Pagina de inicio</a>
+            <br>
+            <p>Result:</p>
+            <br>
+            <pre>{{facetecResponse | json}}</pre>
+            <br>
+            <p>Audit trail</p>
+            <img [src]="'data:image/png;base64,' + facetecResponse.auditTrail" alt="audit trail" style="display: flex; width: 100%; height: auto;">
+            <br>
+            
+            <br>
+            <p>Low quality audit trail</p>
+            <img [src]="'data:image/png;base64,' + facetecResponse.lowQualityAuditTrail[0]" alt="Low quality" style="display: flex; width: 100%; height: auto;">
+            
+            <br>
+            <p>Face scan</p>
+            <pre>{{facetecResponse.faceScan}}</pre>
+            
+        </div>
+      </div>
+    </div>
+  </ng-container>

@@ -1,0 +1,9 @@
+/* This styles are required to display correctly in certain mobile devices */
+/* ::ng-deep #acuant-camera {
+    height: 100vh !important;
+    display: flex;
+    align-items: center;
+}
+::ng-deep #acuant-ui-canvas{
+    top: unset !important;
+} */

@@ -1,0 +1,34 @@
+<ng-fad-videotaping
+  [legend]="legend"
+  [identifications]="identifications"
+  [configuration]="configuration"
+  (onerror)="onerror($event)"
+  (onclose)="onclose()"
+  (oncomplete)="oncomplete($event)"
+  *ngIf="!isProcessComplete">
+</ng-fad-videotaping>
+
+<ng-container *ngIf="isProcessComplete">
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-9 mt-5">
+        <a class="btn btn-primary" routerLink="home">Home</a>
+        <p>Result from response:</p>
+        <br>
+        <pre>{{videoResult | json}}</pre>
+        <br>
+        <p>Video:</p>
+        <video [src]="videoSrc" controls style="display: flex; width: 60vw; height: 50vh;"></video>
+        <br>
+        <p>Selfie</p>
+        <img [src]="videoResult.selfie" alt="" style="display: flex; width: 60vw; height: auto;">
+        <br>
+        <p>SelfieId 1</p>
+        <img [src]="videoResult.selfieId[0]" alt="" style="display: flex; width: 60vw; height: auto;">
+        <br>
+        <p>SelfieId 2</p>
+        <img [src]="videoResult.selfieId[1]" alt="" style="display: flex; width: 60vw; height: auto;">
+      </div>
+    </div>
+  </div>
+</ng-container>
